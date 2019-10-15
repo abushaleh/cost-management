@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
     $stmt->bindParam(':cat_id', $cat_id);
     $stmt->bindParam(':cost_date', $cost_date);
     if ($stmt->execute()) {
-        echo "Data Successfully inserted.....";
+        header("Location: /cost-management/");
     } else {
         echo "Failled....";
     }
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
     <form action="" method="post" ">
         <div>
             <label for="">cost_name:</label>
-            <input type=" text" name="cost_name">
+            <input type="text" name="cost_name">
         </div>
         <div>
             <label for="">cost_details:</label>
