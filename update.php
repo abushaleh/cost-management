@@ -90,6 +90,4 @@ if (isset($_POST['submit'])) {
         </div>
 </form>
 
-
-
 <?php require 'footer.php';?>
