@@ -2,15 +2,16 @@
 
 require 'db.php';
 
-if (!empty('submit')) {
+if (isset($_POST['submit'])) {
+
+    $cat_name = $_POST['cat_name'];
 
     $sql = "INSERT INTO tbl_cat (cat_name) VALUES (:cat_name)";
 
     $stmt = $connection->prepare($sql);
-    $stmt->bindParam(':cat_name', $_POST['cat_name']);
+    $stmt->bindParam(':cat_name', $cat_name);
 
-    $stmt->execute();
-    if ($sql) {
+    if ($stmt->execute()) {
         echo "Category Data insert successful.";
     } else {
         echo "Category Data insert fail.";

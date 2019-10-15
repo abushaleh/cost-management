@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
 
     $sql = 'INSERT INTO tbl_cost (`cost_name`, `cost_details`, `cost_amount`, `cat_id`,`cost_date`)
                         VALUES (:cost_name, :cost_details, :cost_amount, :cat_id, :cost_date)';
-    $stmt = $pdo->prepare($sql);
+    $stmt = $connection->prepare($sql);
     $stmt->bindParam(':cost_name', $cost_name);
     $stmt->bindParam(':cost_details', $cost_details);
     $stmt->bindParam(':cost_amount', $cost_amount);

@@ -2,13 +2,13 @@
 
 require 'db.php';
 
-$state = $connection->prepare('select * from tbl_cost');
+$sql = 'select * FROM tbl_cost INNER JOIN tbl_cat ON tbl_cost.cat_id = tbl_cat.cat_id';
+$state = $connection->prepare($sql);
 $state->execute();
-$users = $state->fetchAll();
-
+$costs = $state->fetchAll();
 ?>
 
-<?php include_once 'header.php';?>
+<?php include 'header.php';?>
 
 <div>
   <a href="month.php">Month</a>
@@ -25,24 +25,24 @@ $users = $state->fetchAll();
     <th>Date</th>
     <th>Action</th>
   </tr>
-  <?php foreach ($users as $user): ?>
+  <?php foreach ($costs as $cost): ?>
     <tr>
-      <td><?php echo $user['cost_name']; ?></td>
-      <td><?php echo $user['cost_details']; ?></td>
-      <td><?php echo $user['cost_amount']; ?></td>
+      <td><?php echo $cost['cost_name']; ?></td>
+      <td><?php echo $cost['cost_details']; ?></td>
+      <td><?php echo $cost['cost_amount']; ?></td>
       <td>
-        <a href="category.php?id=<?php $user['id'];?>">
-          <?php echo $user['cat_name']; ?>
+        <a href="category.php?id=<?php $cost['id'];?>">
+          <?php echo $cost['cat_name']; ?>
         </a>
       </td>
       <td>
-        <a href="single-date.php?id=<?php $user['id'];?>">
-          <?php echo $user['cost_date']; ?>
+        <a href="single-date.php?id=<?php $cost['cost_id'];?>">
+          <?php echo $cost['cost_date']; ?>
         </a>
       </td>
       <td>
-        <a href="update.php?id=<?php echo $user['id']; ?>" name="update">Update | </a>
-        <a href="delete.php?id=<?php echo $user['id']; ?>" name="delete">Delete</a>
+        <a href="update.php?id=<?php echo $cost['cost_id']; ?>" name="update">Update | </a>
+        <a href="delete.php?id=<?php echo $cost['cost_id']; ?>" name="delete">Delete</a>
       </td>
     </tr>
 
@@ -50,6 +50,6 @@ $users = $state->fetchAll();
 
 </table>
 <br><br>
-<a href="create.php">Back To Form</a>
+<a href="create.php">Add a Cost</a>
 
-<?php include_once 'footer.php';?>
+<?php include 'footer.php';?>
