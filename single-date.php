@@ -5,7 +5,7 @@ require 'db.php';
 if (isset($_GET['search'])) {
     $search = $_GET['search'];
     $query = "Select * From tbl_cost Where cost_date Like '%$search%' ";
-    $stmt = $pdo->prepare($query);
+    $stmt = $connection->prepare($query);
     $stmt->execute();
 }
 ?>

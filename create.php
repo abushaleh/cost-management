@@ -3,7 +3,7 @@
 require 'db.php';
 
 $sql = 'SELECT * from tbl_cat';
-$stmt = $pdo->prepare($sql);
+$stmt = $connection->prepare($sql);
 $stmt->execute();
 $catagories = $stmt->fetchAll(PDO::FETCH_OBJ);
 
