@@ -6,45 +6,36 @@ $id = $_GET['id'];
 $sql = 'SELECT * FROM tbl_cost WHERE id=:id';
 $statement = $connection->prepare($sql);
 $statement->execute([':id' => $id]);
-$person = $statement->fetch(PDO::FETCH_OBJ);
-if (isset($_POST['name']) && isset($_POST['email'])) {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $sql = 'UPDATE tbl_cost SET name=:name, email=:email WHERE id=:id';
+$costs = $statement->fetch(PDO::FETCH_OBJ);
+
+if (isset($_POST['submit'])) {
+    $cost_name = $_POST['cost_name'];
+    $cost_details = $_POST['cost_details'];
+    $cost_amount = $_POST['cost_amount'];
+    $cost_date = $_POST['cost_date'];
+    $cat_id = $_POST['cat_id'];
+
+    $sql = 'UPDATE tbl_cost SET cost_name=:cost_name, cost_details=:cost_details,cost_amount=:cost_amount, cost_date=:cost_date, cat_id=:cat_id WHERE id=:id';
     $statement = $connection->prepare($sql);
-    if ($statement->execute([':name' => $name, ':email' => $email, ':id' => $id])) {
-        header("Location: /");
+    if ($statement->execute([':cost_name' => $cost_name, ':cost_details' => $cost_details, ':cost_amount' => $cost_amount, ':cost_date' => $cost_date, ':cat_id' => $cat_id])) {
+        header("Location: /cost-namagement");
+    } else {
+        echo "Data update failed!!";
     }
 }
+
 ?>
 
 <?php require 'header.php';?>
-<div class="container">
-  <div class="card mt-5">
-    <div class="card-header">
-      <h2>Update person</h2>
-    </div>
-    <div class="card-body">
+
       <?php if (!empty($message)): ?>
         <div class="alert alert-success">
           <?=$message;?>
         </div>
       <?php endif;?>
       <form method="post">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input value="<?=$person->name;?>" type="text" name="name" id="name" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" value="<?=$person->email;?>" name="email" id="email" class="form-control">
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-info">Update person</button>
-        </div>
+
       </form>
-    </div>
-  </div>
-</div>
+
 
 <?php require 'footer.php';?>
