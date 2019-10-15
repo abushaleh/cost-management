@@ -33,9 +33,38 @@ if (isset($_POST['submit'])) {
           <?=$message;?>
         </div>
       <?php endif;?>
-      <form method="post">
 
-      </form>
+    <form action="" method="post" ">
+       <div>
+           <label for="">cost_name:</label>
+           <input type="text" name="cost_name" value="<?=$category->cat_id;?>">
+       </div>
+       <div>
+           <label for="">cost_details:</label>
+           <input type="text" name="cost_details" value="<?=$category->cat_id;?>">
+       </div>
+       <div>
+           <label for="">cost_amount :</label>
+           <input type="text" name="cost_amount" value="<?=$category->cat_id;?>">
+       </div>
+       <div>
+           <label for="">Category value:</label>
+           <select name="cat_id">
+               <option value="">--Select One--</option>
+               <?php foreach ($catagories as $category): ?>
+                   <option value="<?=$category->cat_id;?>"> <?=$category->cat_name;?></option>
+               <?php endforeach;?>
+           </select>
+       </div>
+       <div>
+           <label for="">Date:</label>
+           <input type="date" name="cost_date" value="<?=$category->cat_id;?>">
+       </div>
+       <div>
+           <input type="submit" name="submit" value="Submit">
+       </div>
+   </form>
+
 
 
 <?php require 'footer.php';?>
