@@ -2,16 +2,12 @@
 
 require 'db.php';
 
-if (!empty($_POST['cat_value'])) {
+if (!empty('submit')) {
 
-    $cat = 'category';
-
-    $sql = "INSERT INTO tbl_cat (cat_name,cat_value) VALUES (:cat_name,:cat_value)";
+    $sql = "INSERT INTO tbl_cat (cat_name) VALUES (:cat_name)";
 
     $stmt = $connection->prepare($sql);
-
-    $stmt->bindParam(':cat_name', $cat);
-    $stmt->bindParam(':cat_value', $_POST['cat_value']);
+    $stmt->bindParam(':cat_name', $_POST['cat_name']);
 
     $stmt->execute();
     if ($sql) {
@@ -24,13 +20,13 @@ if (!empty($_POST['cat_value'])) {
 
 ?>
 
- <?php include 'header.php';?>
+<?php include 'header.php';?>
 
-	<form action="" method="post">
-		<label>Category Value:</label>
-		<input type="text" name="cat_value"><br><br>
-		<input type="submit" name="submit" value="Submit">
-	</form>
-	<a href="viewCategory.php">View Category</a>
+		<form action="" method="post">
+			<label>Category Value:</label>
+			<input type="text" name="cat_name"><br><br>
+			<input type="submit" name="submit" value="Submit">
+		</form>
+		<a href="viewCategory.php">View Category</a>
 
 <?php include "footer.php";?>
