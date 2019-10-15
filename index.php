@@ -1,19 +1,15 @@
-
-
 <?php
 
-try {
-    $connection = new PDO('mysql:host=localhost;dbname=cost_management', 'root', '');
-    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $state = $connection->prepare('select * from tbl_cost');
-    $state->execute();
-    $users = $state->fetchAll();
-} catch (PDOException $e) {
-    echo "database connection fail" . $e->getMessage();
-}
+require 'db.php';
+
+$state = $connection->prepare('select * from tbl_cost');
+$state->execute();
+$users = $state->fetchAll();
+
 ?>
 
 <?php include_once 'header.php';?>
+
 <div>
   <a href="month.php">Month</a>
   <a href="year.php">Year</a>
