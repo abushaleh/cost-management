@@ -6,6 +6,7 @@ $sql = 'select * FROM tbl_cost INNER JOIN tbl_cat ON tbl_cost.cat_id = tbl_cat.c
 $state = $connection->prepare($sql);
 $state->execute();
 $costs = $state->fetchAll();
+
 ?>
 
 <?php include 'header.php';?>
