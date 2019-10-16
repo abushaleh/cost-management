@@ -32,12 +32,12 @@ $costs = $state->fetchAll();
       <td><?php echo $cost['cost_details']; ?></td>
       <td><?php echo $cost['cost_amount']; ?></td>
       <td>
-        <a href="single_category.php?id=<?php $cost['cat_id'];?>">
+        <a href="category.php?id=<?php $cost['id'];?>">
           <?php echo $cost['cat_name']; ?>
         </a>
       </td>
       <td>
-        <a href="single-date.php?id=<?php echo $cost['cost_id']; ?>">
+        <a href="single-date.php?cost_date=<?php echo $cost['cost_date']; ?>">
           <?php echo $cost['cost_date']; ?>
         </a>
       </td>

@@ -14,6 +14,7 @@ if (isset($_GET['search'])) {
     $costs->execute();
 }
 
+
 // if (isset($_GET['search'])) {
 //     $search = $_GET['search'];
 //     $query = "Select cost_name, cost_details, SUM(cost_amount) as cost_amount, cat_id From tbl_cost where cost_date = '$search' GROUP BY cost_date ";
@@ -51,7 +52,7 @@ if (isset($_GET['search'])) {
 // )
 ?>
 
-<?php include 'header.php';?>
+<?php include 'header.php'; ?>
 
 <div>
     <form action="" method="get">
@@ -71,8 +72,8 @@ if (isset($_GET['search'])) {
             </tr>
         </thead>
         <?php
-foreach ($costs as $cost) {
-    ?>
+        foreach ($costs as $cost) {
+            ?>
             <tr>
                 <td><?php echo $cost['cost_name']; ?></td>
                 <td><?php echo $cost['cost_details']; ?></td>
@@ -82,7 +83,7 @@ foreach ($costs as $cost) {
 
             </tr>
 
-        <?php }?>
+        <?php } ?>
     </table>
 </div>
 
@@ -104,8 +105,8 @@ foreach ($costs as $cost) {
                 type: "pie",
                 yValueFormatString: "#,##0.00\"%\"",
                 indexLabel: "{cost_name} ({cost_amount})",
-                dataPoints: <?php //echo json_encode($data, JSON_NUMERIC_CHECK);
-?>
+                dataPoints: <?php //echo json_encode($data, JSON_NUMERIC_CHECK); 
+                            ?>
             }]
         });
         chart.render();
@@ -115,4 +116,4 @@ foreach ($costs as $cost) {
 
 
 
-<?php include 'footer.php';?> -->
+<?php include 'footer.php'; ?> -->
