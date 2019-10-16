@@ -32,7 +32,7 @@ $costs = $state->fetchAll();
       <td><?php echo $cost['cost_details']; ?></td>
       <td><?php echo $cost['cost_amount']; ?></td>
       <td>
-        <a href="category.php?id=<?php $cost['id'];?>">
+        <a href="single_category.php?id=<?php echo $cost['cat_id']; ?>">
           <?php echo $cost['cat_name']; ?>
         </a>
       </td>
@@ -52,5 +52,7 @@ $costs = $state->fetchAll();
 </table>
 <br><br>
 <a href="create.php">Add a Cost</a>
+<a href="allCategory.php">See all catagory</a>
+<a href="addcategory.php">Create a catagory</a>
 
 <?php include 'footer.php';?>
