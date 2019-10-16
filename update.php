@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
         <div>
             <label for="">Category value:</label>
             <select name="cat_id">
-                <option value="<?=$cost->cat_id;?><"><?=$cost->cat_name;?></option>
+                <option value="<?=$cost->cat_id;?><"<?=$cost->cat_name;?></option>
                 <?php foreach ($catagories as $category): ?>
                     <option value="<?=$category->cat_id;?>"> <?=$category->cat_name;?></option>
                 <?php endforeach;?>
