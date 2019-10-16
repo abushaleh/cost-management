@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 16, 2019 at 08:51 AM
+-- Generation Time: Oct 16, 2019 at 09:11 AM
 -- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- PHP Version: 7.1.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -61,7 +61,6 @@ CREATE TABLE `tbl_cost` (
 --
 
 INSERT INTO `tbl_cost` (`cost_id`, `cost_name`, `cost_details`, `cost_amount`, `cost_date`, `cat_id`) VALUES
-(1, ' food', 'aa', 123, '2019-10-08', 1),
 (2, '  food', 'sdasd', 22, '2019-12-10', 2),
 (3, 'device', 'sdasd', 22, '2019-10-15', 2),
 (4, 'sdad', 'sadasd', 342, '2019-10-09', 1),
