@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 15, 2019 at 05:00 PM
+-- Generation Time: Oct 16, 2019 at 08:51 AM
 -- Server version: 10.4.6-MariaDB
--- PHP Version: 7.1.31
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tbl_cat` (
   `cat_id` int(11) NOT NULL,
-  `cat_name` varchar(255) NOT NULL
+  `cat_name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -38,10 +38,8 @@ CREATE TABLE `tbl_cat` (
 --
 
 INSERT INTO `tbl_cat` (`cat_id`, `cat_name`) VALUES
-(1, 'Computer'),
-(2, 'Food'),
-(3, 'Internet Bill'),
-(4, 'Current Bill');
+(1, 'Food'),
+(2, 'Device');
 
 -- --------------------------------------------------------
 
@@ -54,8 +52,8 @@ CREATE TABLE `tbl_cost` (
   `cost_name` varchar(255) NOT NULL,
   `cost_details` text NOT NULL,
   `cost_amount` int(11) NOT NULL,
-  `cost_date` datetime NOT NULL DEFAULT current_timestamp(),
-  `cat_id` int(11) NOT NULL
+  `cost_date` date DEFAULT NULL,
+  `cat_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -63,9 +61,12 @@ CREATE TABLE `tbl_cost` (
 --
 
 INSERT INTO `tbl_cost` (`cost_id`, `cost_name`, `cost_details`, `cost_amount`, `cost_date`, `cat_id`) VALUES
-(1, 'singara', 'singara for guest', 120, '2019-10-15 00:00:00', 2),
-(2, 'Laptop', 'macbook pro for emplyee', 12000, '2019-10-08 00:00:00', 1),
-(5, 'Dell', 'Dell pc foor hr ba', 50000, '2019-10-02 00:00:00', 1);
+(1, ' food', 'aa', 123, '2019-10-08', 1),
+(2, '  food', 'sdasd', 22, '2019-12-10', 2),
+(3, 'device', 'sdasd', 22, '2019-10-15', 2),
+(4, 'sdad', 'sadasd', 342, '2019-10-09', 1),
+(5, 'tert', 'terte', 33, '2019-10-08', 1),
+(6, 'fdsf', 'sdf', 1000, '2019-10-08', 1);
 
 --
 -- Indexes for dumped tables
@@ -91,7 +92,7 @@ ALTER TABLE `tbl_cost`
 -- AUTO_INCREMENT for table `tbl_cat`
 --
 ALTER TABLE `tbl_cat`
-  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_cost`
