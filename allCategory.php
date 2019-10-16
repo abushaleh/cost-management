@@ -1,11 +1,12 @@
 <?php
 require 'db.php';
 
-$query = "SELECT cat_name,SUM(cost_amount) as column_sum FROM tbl_cat INNER JOIN tbl_cost GROUP BY cat_name ";
+$query = "SELECT cat_name,SUM(cost_amount) as column_sum FROM tbl_cost inner join tbl_cat on tbl_cost.cat_id=tbl_cat.cat_id GROUP BY cat_name";
 $stmt = $connection->prepare($query);
 $stmt->execute();
 $data = $stmt->fetchAll();
-
+// print_r($data);
+// exit();
 ?>
 
 <?php include 'header.php';?>

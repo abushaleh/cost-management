@@ -37,7 +37,7 @@ $costs = $state->fetchAll();
         </a>
       </td>
       <td>
-        <a href="single-date.php?id=<?php $cost['cost_id'];?>">
+        <a href="single-date.php?id=<?php echo $cost['cost_id']; ?>">
           <?php echo $cost['cost_date']; ?>
         </a>
       </td>
