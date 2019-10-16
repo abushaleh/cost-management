@@ -7,6 +7,17 @@ $stmt->execute();
 $data = $stmt->fetchAll();
 // print_r($data);
 // exit();
+
+if(isset($_GET['jsondata'])){
+    $a = $b = array();
+    foreach($data as $d){
+        $a[] = $d['cat_name'];
+        $b[] = $d['column_sum'];
+    }
+    echo json_encode(array('cat'=>$a,'cost'=>$b));
+    exit();
+}
+
 ?>
 
 <?php include 'header.php';?>
@@ -29,6 +40,10 @@ foreach ($data as $value) {
         </tr>
         <?php }?>
     </table>
+</div>
+
+<div style="max-width: 500px;">
+    <canvas id="myChart"></canvas>
 </div>
 
 <?php include 'footer.php';?>
