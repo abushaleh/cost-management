@@ -17,7 +17,7 @@ $stmt = $connection->prepare($sql);
 $stmt->execute();
 $catagories = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-if (isset($_GET['search'])) {
+if (isset($_GET['submit'])) {
     $cat_id = $_GET['cat_id'];
     $sql = "SELECT * from tbl_cost WHERE cat_id=:cat_id && month(cost_date)=:month && year(cost_date)=:year";
     $stmt = $connection->prepare($sql);
@@ -41,7 +41,7 @@ if (isset($_GET['search'])) {
         <option value="<?=$category->cat_id;?>"> <?=$category->cat_name;?></option>
       <?php endforeach;?>
     </select>
-    <input type="submit" name="search" value="Search" />
+    <input type="submit" name="submit" value="Search" />
   </form>
 </div>
 <br><br>
