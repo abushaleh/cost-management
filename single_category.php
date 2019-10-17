@@ -1,7 +1,7 @@
 <?php
 require 'db.php';
 
-$cat_id = $_GET['id'];
+$cat_id = $_GET['cat_id'];
 $month = date('m');
 $year = date('Y');
 // echo $month;
@@ -18,11 +18,11 @@ $stmt->execute();
 $catagories = $stmt->fetchAll(PDO::FETCH_OBJ);
 
 if (isset($_GET['search'])) {
-    $search = $_GET['search'];
-    $query = "SELECT * FROM tbl_cost INNER JOIN tbl_cat WHERE ON tbl_cost.cat_id = tbl_cat.cat_id;";
-    $stmt = $connection->prepare($query);
-    $stmt->execute();
-    $data = $stmt->fetchAll();
+    $cat_id = $_GET['cat_id'];
+    $sql = "SELECT * from tbl_cost WHERE cat_id=:cat_id && month(cost_date)=:month && year(cost_date)=:year";
+    $stmt = $connection->prepare($sql);
+    $stmt->execute([':cat_id' => $cat_id, ':month' => $month, ':year' => $year]);
+    $values = $stmt->fetchAll(PDO::FETCH_OBJ);
 
     // print_r($values);
     // exit();
@@ -35,7 +35,7 @@ if (isset($_GET['search'])) {
 
 <div>
   <form action="" method="get">
-    <select name="search">
+    <select name="cat_id">
       <option>-- select category --</option>
       <?php foreach ($catagories as $category): ?>
         <option value="<?=$category->cat_id;?>"> <?=$category->cat_name;?></option>
