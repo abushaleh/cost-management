@@ -17,12 +17,7 @@ if (isset($_POST['submit'])) {
     $stmt->execute([':month' => $month, ':year' => $year]);
     $data = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-    // print_r($values);
-    // exit();
 }
-
-// print_r($data);
-// exit();
 
 if (isset($_GET['jsondata'])) {
     $a = $b = array();
