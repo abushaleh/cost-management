@@ -2,10 +2,14 @@
 require 'db.php';
 
 $cat_id = $_GET['id'];
+$month = date('m');
+$year = date('Y');
+// echo $month;
+// exit();
 
-$sql = 'SELECT * from tbl_cost WHERE cat_id=:cat_id';
+$sql = 'SELECT * from tbl_cost WHERE cat_id=:cat_id && month(cost_date)=:month && year(cost_date)=:year';
 $stmt = $connection->prepare($sql);
-$stmt->execute([':cat_id' => $cat_id]);
+$stmt->execute([':cat_id' => $cat_id, ':month' => $month, ':year' => $year]);
 $values = $stmt->fetchAll(PDO::FETCH_OBJ);
 
 $sql = 'SELECT * from tbl_cat';
@@ -14,19 +18,18 @@ $stmt->execute();
 $catagories = $stmt->fetchAll(PDO::FETCH_OBJ);
 
 if (isset($_GET['search'])) {
-  $search = $_GET['search'];
-  $query = "SELECT * FROM tbl_cost INNER JOIN tbl_cat WHERE ON tbl_cost.cat_id = tbl_cat.cat_id;";
-  $stmt = $connection->prepare($query);
-  $stmt->execute();
-  $data = $stmt->fetchAll();
+    $search = $_GET['search'];
+    $query = "SELECT * FROM tbl_cost INNER JOIN tbl_cat WHERE ON tbl_cost.cat_id = tbl_cat.cat_id;";
+    $stmt = $connection->prepare($query);
+    $stmt->execute();
+    $data = $stmt->fetchAll();
 
-
-  // print_r($values);
-  // exit();
+    // print_r($values);
+    // exit();
 }
 ?>
 
-<?php include 'header.php'; ?>
+<?php include 'header.php';?>
 
 <a href="allCategory.php">Search All Category</a> <br><br>
 
@@ -50,21 +53,19 @@ if (isset($_GET['search'])) {
         <th>cost_details</th>
         <th>cost_amount</th>
         <th>cost_date</th>
-        <th>cat_id</th>
       </tr>
     </thead>
     <?php
-    foreach ($values as $value) {
-      ?>
+foreach ($values as $value) {
+    ?>
       <tr>
-        <td><?= $value->cost_name; ?></td>
-        <td><?= $value->cost_details; ?></td>
-        <td><?= $value->cost_amount; ?></td>
-        <td><?= $value->cost_date; ?></td>
-        <td><?= $value->cat_id; ?></td>
+        <td><?=$value->cost_name;?></td>
+        <td><?=$value->cost_details;?></td>
+        <td><?=$value->cost_amount;?></td>
+        <td><?=$value->cost_date;?></td>
       </tr>
-    <?php } ?>
+    <?php }?>
   </table>
 </div>
 
-<?php include 'footer.php'; ?>
+<?php include 'footer.php';?>

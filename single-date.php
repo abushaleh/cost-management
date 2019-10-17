@@ -2,7 +2,7 @@
 
 require 'db.php';
 
-$cost_date = $_GET['cost_date'];
+@$cost_date = $_GET['cost_date'];
 $query = "Select cost_name, cost_details, cost_amount, cost_date, cat_id From tbl_cost where cost_date = '$cost_date' ";
 $costs = $connection->prepare($query);
 $costs->execute();
@@ -52,4 +52,4 @@ foreach ($costs as $cost) {
 </div>
 
 
-<?php include 'footer.php';?> -->
+<?php include 'footer.php';?>
