@@ -11,13 +11,14 @@ if (isset($_GET['search'])) {
 
 ?>
 
-<?php include 'header.php';?>
+<?php include 'header.php'; ?>
 
 <div>
     <form action="" method="get">
         <input type="date" name="search" placeholder="Search keyword..." />
         <input type="submit" name="submit" value="Search" />
     </form>
+    <h1>Hello world</h1>
 </div>
 <div>
     <table>
@@ -28,15 +29,15 @@ if (isset($_GET['search'])) {
             </tr>
         </thead>
         <?php
-foreach ($stmt as $value) {
-    ?>
+        foreach ($stmt as $value) {
+            ?>
             <tr>
                 <td><?php echo $value['cost_date']; ?></td>
                 <td><?php echo $value['expance']; ?></td>
             </tr>
 
-        <?php }?>
+        <?php } ?>
     </table>
 </div>
 
-<?php include 'footer.php';?>
+<?php include 'footer.php'; ?>
