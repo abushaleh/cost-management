@@ -2,14 +2,14 @@
 
 require 'db.php';
 
-$sql = 'select * FROM tbl_cost INNER JOIN tbl_cat ON tbl_cost.cat_id = tbl_cat.cat_id';
+$sql = 'select * FROM tbl_cost INNER JOIN tbl_cat ON tbl_cost.cat_id = tbl_cat.cat_id Order by cat_name';
 $state = $connection->prepare($sql);
 $state->execute();
 $costs = $state->fetchAll();
 
 ?>
 
-<?php include 'header.php';?>
+<?php include 'header.php'; ?>
 
 <div>
   <a href="month.php">Month</a>
@@ -26,7 +26,7 @@ $costs = $state->fetchAll();
     <th>Date</th>
     <th>Action</th>
   </tr>
-  <?php foreach ($costs as $cost): ?>
+  <?php foreach ($costs as $cost) : ?>
     <tr>
       <td><?php echo $cost['cost_name']; ?></td>
       <td><?php echo $cost['cost_details']; ?></td>
@@ -47,7 +47,7 @@ $costs = $state->fetchAll();
       </td>
     </tr>
 
-  <?php endforeach;?>
+  <?php endforeach; ?>
 
 </table>
 <br><br>
@@ -55,4 +55,4 @@ $costs = $state->fetchAll();
 <a href="allCategory.php">See all catagory</a>
 <a href="addcategory.php">Create a catagory</a>
 
-<?php include 'footer.php';?>
+<?php include 'footer.php'; ?>
